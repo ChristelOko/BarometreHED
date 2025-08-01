@@ -1,0 +1,476 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optimisation des performances */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Préchargement des polices critiques */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-display: swap;
+}
+
+:root {
+  --color-primary: 168, 120, 120;
+  --color-primary-light: 216, 191, 191;
+  --color-secondary: 159, 133, 175;
+  --color-accent: 228, 201, 151;
+  --color-neutral: 249, 241, 238;
+  --color-neutral-dark: 111, 89, 89;
+  --color-success: 147, 178, 148;
+  --color-warning: 232, 199, 159;
+  --color-error: 210, 129, 129;
+}
+
+:root {
+  --color-primary: 168, 120, 120;
+  --color-primary-light: 216, 191, 191;
+  --color-secondary: 159, 133, 175;
+  --color-accent: 228, 201, 151;
+  --color-neutral: 249, 241, 238;
+  --color-neutral-dark: 111, 89, 89;
+  --color-success: 147, 178, 148;
+  --color-warning: 232, 199, 159;
+  --color-error: 210, 129, 129;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    background-color: rgb(var(--color-neutral));
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    background-color: rgb(45, 36, 36);
+    --color-neutral: 249, 241, 238;
+    --color-neutral-dark: 45, 36, 36;
+  }
+
+  body {
+    @apply font-body text-neutral-dark bg-neutral antialiased transition-colors duration-200;
+  }
+
+  .dark body {
+    @apply bg-[#2D2424] text-neutral;
+  }
+
+  /* Dark mode specific styles */
+  .dark .bg-white {
+    @apply bg-[#2D2424] text-neutral border-[#3D3232];
+  }
+
+  .dark .bg-neutral {
+    @apply bg-[#1F1919];
+  }
+
+  .dark .text-neutral-dark {
+    @apply text-neutral;
+  }
+
+  .dark .text-neutral-dark\/70 {
+    @apply text-neutral/70;
+  }
+
+  .dark .text-neutral-dark\/80 {
+    @apply text-neutral/80;
+  }
+
+  .dark .border-neutral-dark {
+    @apply border-neutral;
+  }
+
+  .dark .border-neutral-dark\/20 {
+    @apply border-neutral/20;
+  }
+
+  .dark .border-neutral-dark\/30 {
+    @apply border-neutral/30;
+  }
+
+  .dark .hover\:bg-primary\/10:hover {
+    @apply hover:bg-primary/20;
+  }
+
+  .dark .hover\:bg-warning\/10:hover {
+    @apply hover:bg-warning/20;
+  }
+
+  /* Input fields in dark mode */
+  .dark .input-field {
+    @apply bg-[#2D2424] border-[#3D3232] text-neutral placeholder-neutral/50;
+  }
+
+  /* Button styles in dark mode */
+  .dark .btn-primary {
+    @apply bg-primary text-neutral hover:bg-primary/90;
+  }
+
+  .dark .btn-outline {
+    @apply border-neutral text-neutral hover:bg-neutral/10;
+  }
+
+  /* Card styles in dark mode */
+  .dark .card {
+    @apply bg-[#2D2424] text-neutral border-[#3D3232];
+  }
+
+  /* Slider styles in dark mode */
+  .dark .slider {
+    @apply bg-[#3D3232];
+  }
+
+  .dark .slider::-webkit-slider-thumb {
+    @apply bg-primary;
+  }
+
+  .dark .slider::-moz-range-thumb {
+    @apply bg-primary;
+  }
+
+  /* Dropdown and select styles in dark mode */
+  .dark select {
+    @apply bg-[#2D2424] border-[#3D3232] text-neutral;
+  }
+
+  /* Checkbox and radio styles in dark mode */
+  .dark input[type="checkbox"],
+  .dark input[type="radio"] {
+    @apply border-[#3D3232] bg-[#2D2424];
+  }
+
+  /* Table styles in dark mode */
+  .dark table {
+    @apply border-[#3D3232];
+  }
+
+  .dark th,
+  .dark td {
+    @apply border-[#3D3232] text-neutral;
+  }
+
+  /* Modal and dialog styles in dark mode */
+  .dark .modal,
+  .dark .dialog {
+    @apply bg-[#2D2424] border-[#3D3232];
+  }
+
+  /* Tooltip styles in dark mode */
+  .dark .tooltip {
+    @apply bg-[#3D3232] text-neutral;
+  }
+
+  /* Progress bar styles in dark mode */
+  .dark .progress {
+    @apply bg-[#3D3232];
+  }
+
+  .dark .progress-bar {
+    @apply bg-primary;
+  }
+
+  /* Alert and notification styles in dark mode */
+  .dark .alert {
+    @apply bg-[#3D3232] border-[#4D4242] text-neutral;
+  }
+
+  /* Badge styles in dark mode */
+  .dark .badge {
+    @apply bg-[#3D3232] text-neutral;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-2 rounded-lg border-2 border-neutral-dark/20 focus:border-primary focus:outline-none transition-colors;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .btn {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 shadow-sm hover:shadow;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary/10 shadow-sm hover:shadow;
+  }
+
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-sm border border-neutral/10 hover:shadow-md transition-shadow;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Slider customization */
+.slider {
+  @apply w-full h-2 bg-neutral rounded-lg appearance-none cursor-pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  @apply w-6 h-6 bg-primary rounded-full appearance-none cursor-pointer shadow-md hover:shadow-lg transition-shadow;
+}
+
+.slider::-moz-range-thumb {
+  @apply w-6 h-6 bg-primary rounded-full appearance-none cursor-pointer shadow-md hover:shadow-lg transition-shadow;
+}
+
+/* Text overflow fixes */
+.break-words {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  input, select, textarea, button {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+
+  /* Fix for mobile menu scrolling */
+  .fixed.inset-0 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  .fixed.inset-0 .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    padding-bottom: 8rem; /* Add extra padding at the bottom for better scrolling */
+  }
+  
+  /* Safe area for bottom navigation */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+  
+  /* Center mobile menu content */
+  .mobile-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+
+  /* Mobile-specific improvements */
+  .mobile-card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(168, 120, 120, 0.1);
+  }
+
+  .mobile-button {
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 16px;
+      border-radius: 12px;
+    transition: all 0.3s ease;
+      font-weight: 500;
+  }
+
+  .mobile-button:active {
+    transform: scale(0.95);
+  }
+    
+  .mobile-input {
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 2px solid rgba(168, 120, 120, 0.1);
+      background: white;
+  }
+
+  .mobile-input:focus {
+    border-color: rgb(168, 120, 120);
+    box-shadow: 0 0 0 3px rgba(168, 120, 120, 0.1);
+  }
+    
+  /* Touch-friendly spacing */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-touch-target:active {
+    transform: scale(0.95);
+  }
+    
+  /* Improved scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    border-radius: 12px;
+  }
+
+  /* Better text readability */
+  .mobile-text {
+    line-height: 1.6;
+    font-size: 16px;
+      color: rgb(111, 89, 89);
+  }
+
+  /* Sticky elements positioning */
+  .mobile-sticky {
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    border-radius: 0 0 16px 16px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Swipe gestures support */
+  .mobile-swipeable {
+    touch-action: pan-x;
+    border-radius: 12px;
+  }
+
+  /* Improved form elements */
+  .mobile-form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-form-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+      color: rgb(111, 89, 89);
+  }
+  
+  /* Mobile-specific rounded containers */
+  .mobile-container {
+    border-radius: 16px;
+    background: white;
+    border: 1px solid rgba(168, 120, 120, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-item {
+    border-radius: 16px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    background: rgba(168, 120, 120, 0.05);
+    border: 1px solid rgba(168, 120, 120, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-nav-item:active {
+    transform: scale(0.98);
+    background: rgba(168, 120, 120, 0.15);
+  }
+
+  /* Mobile tabs with rounded design */
+  .mobile-tab {
+    border-radius: 12px;
+    padding: 8px 16px;
+    margin: 0 4px;
+    background: rgba(168, 120, 120, 0.05);
+    border: 1px solid rgba(168, 120, 120, 0.15);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-tab.active {
+    background: rgb(168, 120, 120);
+    color: white;
+    box-shadow: 0 2px 8px rgba(168, 120, 120, 0.2);
+  }
+
+  /* Mobile floating elements */
+  .mobile-floating {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(168, 120, 120, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Mobile scan cards */
+  .mobile-scan-card {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(168, 120, 120, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-scan-card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(168, 120, 120, 0.15);
+    border-color: rgba(168, 120, 120, 0.3);
+  }
+
+  /* Dark mode improvements for mobile */
+  .dark .mobile-nav-item {
+    background: rgba(168, 120, 120, 0.1);
+    border: 1px solid rgba(168, 120, 120, 0.2);
+    color: rgb(var(--color-neutral));
+  }
+
+  .dark .mobile-nav-item:active {
+    background: rgba(168, 120, 120, 0.2);
+  }
+
+  .dark .mobile-floating {
+    background: rgba(45, 36, 36, 0.95);
+    border: 1px solid rgba(168, 120, 120, 0.2);
+  }
+
+  .dark .mobile-scan-card {
+    background: rgba(45, 36, 36, 0.95);
+    border: 2px solid rgba(168, 120, 120, 0.2);
+  }
+  }

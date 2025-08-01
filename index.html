@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Montserrat:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#F9F1EE" />
+    <meta name="description" content="Baromètre Énergétique - Diagnostic énergétique basé sur le Human Design pour les femmes" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#F9F1EE">
+    <meta name="msapplication-TileColor" content="#F9F1EE">
+    
+    <!-- Optimisations de performance -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <title>Baromètre Énergétique</title>
+  </head>
+  <body>
+    <!-- Loading screen initial -->
+    <div id="loading-screen" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2D2424 0%, #1F1919 50%, #2D2424 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+      overflow: hidden;
+    ">
+      
+      <div style="text-align: center;">
+        <img 
+          src="/favicon.svg" 
+          alt="Baromètre Énergétique" 
+          style="
+            width: 140px;
+            height: 140px;
+            display: block;
+            margin: 0 auto 24px auto;
+            filter: drop-shadow(0 10px 20px rgba(168,120,120,0.5));
+          "
+        />
+        <h1 style="
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 2rem;
+          color: #F9F1EE;
+          margin-bottom: 16px;
+          text-align: center;
+          background: linear-gradient(135deg, #F9F1EE, rgba(168,120,120,0.9));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        ">
+          Baromètre Énergétique
+        </h1>
+        <p style="
+          font-family: 'Montserrat', sans-serif;
+          color: rgba(249,241,238,0.8);
+          font-size: 1.1rem;
+          text-align: center;
+        ">
+          Harmonisation des énergies...
+        </p>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
