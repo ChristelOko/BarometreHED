@@ -11,22 +11,21 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children, requireAdmin = false, requireSuperAdmin = false }: ProtectedRouteProps) => {
   const { isAuthenticated, user } = useAuthStore();
   const location = useLocation();
+  const founderEmail = import.meta.env.VITE_FOUNDER_EMAIL;
 
   if (!isAuthenticated) {
     // Rediriger vers login avec l'URL de retour
     return <Navigate to="/login" state={{ returnTo: location.pathname }} replace />;
   }
 
-  if (requireSuperAdmin && user?.role !== 'super_admin' && user?.email !== 'christel.aplogan@gmail.com') {
-    // Seul le super admin ou Christel peut accéder
+  if (requireSuperAdmin && user?.role !== 'super_admin' && user?.email !== founderEmail) {
+    // Seul le super admin ou la fondatrice peut accéder
     return <Navigate to="/dashboard" replace />;
   }
 
-  if (requireAdmin && user?.role !== 'admin') {
-    // Vérifier si c'est Christel (fondatrice) qui a toujours accès admin
-    if (user?.email !== 'christel.aplogan@gmail.com') {
-      return <Navigate to="/dashboard" replace />;
-    }
+  if (requireAdmin && user?.role !== 'admin' && user?.email !== founderEmail) {
+    // Vérifier si c'est l'email de la fondatrice qui a toujours accès admin
+    return <Navigate to="/dashboard" replace />;
   }
 
   return <>{children}</>;

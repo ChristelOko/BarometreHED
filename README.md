@@ -24,7 +24,10 @@ Application de diagnostic énergétique basée sur le Human Design pour les femm
    ```
    VITE_SUPABASE_URL=votre_url_supabase
    VITE_SUPABASE_ANON_KEY=votre_clé_anon_supabase
+   VITE_FOUNDER_EMAIL=email_de_la_fondatrice
    ```
+
+   - `VITE_FOUNDER_EMAIL` : adresse email de la fondatrice disposant d'un accès administrateur permanent.
 
 ### Développement
 
