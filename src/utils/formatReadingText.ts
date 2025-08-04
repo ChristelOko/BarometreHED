@@ -16,8 +16,9 @@ export const formatReadingText = (text: string): FormattedText => {
   
   // Check if the text contains HTML-like content or markdown
   const hasHtml = /<[^>]+>/.test(cleanText);
-  const hasMarkdown = /\*\*.*?\*\*|\*.*?\*|_.*?_/.test(cleanText);
-  
+  // Include basic markdown elements and lists
+  const hasMarkdown = /\*\*.*?\*\*|\*.*?\*|_.*?_|^-\s|\n-\s/m.test(cleanText);
+
   if (hasHtml || hasMarkdown) {
     // Process markdown-like formatting
     let htmlText = cleanText
@@ -27,12 +28,14 @@ export const formatReadingText = (text: string): FormattedText => {
       // Italic text: *text* or _text_
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/_(.*?)_/g, '<em>$1</em>')
+      // Lists (process before line breaks)
+      .replace(/^-\s+(.*)$/gm, '<li>$1</li>')
+      .replace(/(?:<li>.*?<\/li>\n?)+/g, match => `<ul>${match.replace(/\n/g, '')}</ul>`)
       // Line breaks
       .replace(/\n\n/g, '</p><p>')
       .replace(/\n/g, '<br/>')
-      // Lists
-      .replace(/^- (.*$)/gim, '<li>$1</li>')
-      .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+      .replace(/<br\/><ul>/g, '<ul>')
+      .replace(/<\/ul><br\/>/g, '</ul>')
       // Wrap in paragraphs if not already wrapped
       .replace(/^(?!<[pu])/gm, '<p>')
       .replace(/(?<!>)$/gm, '</p>')
